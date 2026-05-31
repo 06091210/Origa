@@ -1,11 +1,11 @@
 const canvas = document.getElementById('canvas');
-//const ctx = canvas.getContext('2d');
+const ctx = canvas.getContext('2d');
 
 const side = 500;
 const Lines = [];
 
 //谷折り線
-export function valley(ctx) {
+function valley() {
   ctx.strokeStyle = "#0000ff";
   ctx.setLineDash([10, 5]);
   ctx.stroke();
