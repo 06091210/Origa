@@ -5,7 +5,7 @@ const side = 500;
 const Lines = [];
 
 //谷折り線
-function valley() {
+export function valley() {
   ctx.strokeStyle = "#0000ff";
   ctx.setLineDash([10, 5]);
   ctx.stroke();
