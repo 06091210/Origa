@@ -238,7 +238,7 @@ function end(line) {
   index = Lines.indexOf(line) + 1;
   return Lines[index][4];
 }
-}
+};
 
 /*
 ctx.beginPath();
