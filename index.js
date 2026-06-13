@@ -53,7 +53,7 @@ equalDivision(show, direction, n, m, name) {
     dir = 0;
   }
   if (m.length == 0) {
-    for (i = 1; i < n; i++) {
+    for (let i = 1; i < n; i++) {
       const x1 = 1 + (this.side - 1) * i * dir / n
       const y1 = 1 + (this.side - 1) * i * Math.abs(dir - 1) / n;
       const x2 = 1 + (this.side - 1) * i * dir / n + this.side * Math.abs(dir - 1)
@@ -61,7 +61,7 @@ equalDivision(show, direction, n, m, name) {
       this.record(show, [x1, y1], [x2, y2], name + String(i));
     }
   } else {
-    for (i = 0; i < m.length; i++) {
+    for (let i = 0; i < m.length; i++) {
       const x1 = 1 + (this.side - 1) * m[i] * dir / n
       const y1 = 1 + (this.side - 1) * m[i] * Math.abs(dir - 1) / n;
       const x2 = 1 + (this.side - 1) * m[i] * dir / n + side * Math.abs(dir - 1)
