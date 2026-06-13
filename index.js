@@ -2,45 +2,45 @@ window.origa = {
 ctx: null,
 Lines: [],
 
-setup(Name="canvas", Side=500) {
+setup(Name="canvas") {
   const canvas = document.getElementById(Name);
   this.ctx = canvas.getContext("2d");
 }
 
 valley() {
-  ctx.strokeStyle = "#0000ff";
-  ctx.setLineDash([10, 5]);
-  ctx.stroke();
-  ctx.beginPath();
+  this.ctx.strokeStyle = "#0000ff";
+  this.ctx.setLineDash([10, 5]);
+  this.ctx.stroke();
+  this.ctx.beginPath();
 }
 
 mountain() {
-  ctx.strokeStyle = "#ff0000";
-  ctx.setLineDash([10, 5, 3, 5]);
-  ctx.stroke();
-  ctx.beginPath();
+  this.ctx.strokeStyle = "#ff0000";
+  this.ctx.setLineDash([10, 5, 3, 5]);
+  this.ctx.stroke();
+  this.ctx.beginPath();
 }
 
 frame() {
-  ctx.strokeStyle = "#000000";
-  ctx.setLineDash([]);
-  ctx.stroke();
-  ctx.beginPath();
+  this.ctx.strokeStyle = "#000000";
+  this.ctx.setLineDash([]);
+  this.ctx.stroke();
+  this.ctx.beginPath();
 }
 
 previous() {
-  ctx.strokeStyle = "#b0b0b0";
-  ctx.setLineDash([]);
-  ctx.stroke();
-  ctx.beginPath();
+  this.ctx.strokeStyle = "#b0b0b0";
+  this.ctx.setLineDash([]);
+  this.ctx.stroke();
+  this.ctx.beginPath();
 }
 
 square(side) {
-  ctx.moveTo(1, 1);
-  ctx.lineTo(1, 1 + side);
-  ctx.lineTo(1 + side, 1 + side);
-  ctx.lineTo(1 + side, 1);
-  ctx.lineTo(1, 1);
+  this.ctx.moveTo(1, 1);
+  this.ctx.lineTo(1, 1 + side);
+  this.ctx.lineTo(1 + side, 1 + side);
+  this.ctx.lineTo(1 + side, 1);
+  this.ctx.lineTo(1, 1);
 }
 
 equalDivision(show, direction, n, m, name) {
@@ -186,22 +186,22 @@ mirror(show, line, axis, name) {
   y21 = 2 * y31 - y11;
   x22 = 2 * x32 - x12;
   y22 = 2 * y32 - y12;
-  ctx.moveTo(x21, y21);
-  ctx.lineTo(x22, y22);
+  this.ctx.moveTo(x21, y21);
+  this.ctx.lineTo(x22, y22);
   this.writeLine(show, [x21, y21], [x22, y22], name);
 }
 
 record(show, [x1, y1], [x2, y2], name) {
   if (show) {
-    ctx.moveTo(x1, y1);
-    ctx.lineTo(x2, y2);
+    this.ctx.moveTo(x1, y1);
+    this.ctx.lineTo(x2, y2);
   }
   a = (y2 - y1) / (x2 - x1);
   if (Math.abs(a) != Infinity) {
-    Lines.push(name, ["y=", a, y1 - a * x1, [x1, y1], [x2, y2]]);
+    this.Lines.push(name, ["y=", a, y1 - a * x1, [x1, y1], [x2, y2]]);
   } else {
     a = (x2 - x1) / (y2 - y1);
-    Lines.push(name, ["x=", a, x1 - a * y1, [x1, y1], [x2, y2]]);
+    this.Lines.push(name, ["x=", a, x1 - a * y1, [x1, y1], [x2, y2]]);
   }
 }
 
@@ -215,28 +215,28 @@ countType(type, [x1, y1], [x2, y2]) {
 }
 
 slope(line) {
-  index = Lines.indexOf(line) + 1;
-  return Lines[index][1];
+  index = this.Lines.indexOf(line) + 1;
+  return this.Lines[index][1];
 }
 
 intercept(line) {
-  index = Lines.indexOf(line) + 1;
-  return Lines[index][2];
+  index = this.Lines.indexOf(line) + 1;
+  return this.Lines[index][2];
 }
 
 direction(line) {
-  index = Lines.indexOf(line) + 1;
-  return Lines[index][0];
+  index = this.Lines.indexOf(line) + 1;
+  return this.Lines[index][0];
 }
 
 start(line) {
-  index = Lines.indexOf(line) + 1;
-  return Lines[index][3];
+  index = this.Lines.indexOf(line) + 1;
+  return this.Lines[index][3];
 }
 
 end(line) {
-  index = Lines.indexOf(line) + 1;
-  return Lines[index][4];
+  index = this.Lines.indexOf(line) + 1;
+  return this.Lines[index][4];
 }
 };
 
