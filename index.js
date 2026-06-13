@@ -47,6 +47,7 @@ square(side) {
 
 equalDivision(show, direction, n, m, name) {
   let dir;
+  let x1, y1, x2, y2;
   if (direction == "row") {
    dir = 1;
   } else if (direction == "line") {
@@ -54,18 +55,18 @@ equalDivision(show, direction, n, m, name) {
   }
   if (m.length == 0) {
     for (let i = 1; i < n; i++) {
-      const x1 = 1 + (this.side - 1) * i * dir / n
-      const y1 = 1 + (this.side - 1) * i * Math.abs(dir - 1) / n;
-      const x2 = 1 + (this.side - 1) * i * dir / n + this.side * Math.abs(dir - 1)
-      const y2 = 1 + (this.side - 1) * i * Math.abs(dir - 1) / n + this.side * dir;
+      x1 = 1 + (this.side - 1) * i * dir / n
+      y1 = 1 + (this.side - 1) * i * Math.abs(dir - 1) / n;
+      x2 = 1 + (this.side - 1) * i * dir / n + this.side * Math.abs(dir - 1)
+      y2 = 1 + (this.side - 1) * i * Math.abs(dir - 1) / n + this.side * dir;
       this.record(show, [x1, y1], [x2, y2], name + String(i));
     }
   } else {
     for (let i = 0; i < m.length; i++) {
-      const x1 = 1 + (this.side - 1) * m[i] * dir / n
-      const y1 = 1 + (this.side - 1) * m[i] * Math.abs(dir - 1) / n;
-      const x2 = 1 + (this.side - 1) * m[i] * dir / n + side * Math.abs(dir - 1)
-      const y2 = 1 + (this.side - 1) * m[i] * Math.abs(dir - 1) / n + this.side * dir;
+      x1 = 1 + (this.side - 1) * m[i] * dir / n
+      y1 = 1 + (this.side - 1) * m[i] * Math.abs(dir - 1) / n;
+      x2 = 1 + (this.side - 1) * m[i] * dir / n + side * Math.abs(dir - 1)
+      y2 = 1 + (this.side - 1) * m[i] * Math.abs(dir - 1) / n + this.side * dir;
       this.record(show, [x1, y1], [x2, y2], name + String(i + 1));
     }
   }
@@ -76,68 +77,73 @@ vectorToVector(show, [x1, y1], [x2, y2], name) {
 },
 
 lineToVector(show, [line, z], [x1, y1], name) {
+  let x2, y2;
   if (this.direction(line) == "y=") {
-    const x2 = z;
-    const y2 = this.slope(line) * x2 + this.intercept(line);
+    x2 = z;
+    y2 = this.slope(line) * x2 + this.intercept(line);
   } else if (this.direction(line) == "x=") {
-    const y2 = z;
-    const x2 = this.intercept(line);
+    y2 = z;
+    x2 = this.intercept(line);
   }
   this.record(show, [x1, y1], [x2, y2], name);
 },
 
 linesToVector(show, [line_1, line_2], [x1, y1], name) {
+  let x2, y2;
   if (this.direction(line_1) == "y=") {
     if (this.direction(line_2) == "y=") {
-      const x2 = ((this.intercept(line_2) - this.intercept(line_1)) / (this.slope(line_2) - this.slope(line_1)));
+      x2 = ((this.intercept(line_2) - this.intercept(line_1)) / (this.slope(line_2) - this.slope(line_1)));
     } else if (this.direction(line_2) == "x=") {
-      const x2 = this.intercept(line_2);
+      x2 = this.intercept(line_2);
     }
-    const y2 = this.slope(line_1) * x2 + this.intercept(line_1);
+    y2 = this.slope(line_1) * x2 + this.intercept(line_1);
   } else if (this.direction(line_1) == "x=") {
     if (this.direction(line_2) == "y=") {
-      const x2 = this.intercept(line_1);
+      x2 = this.intercept(line_1);
     }
-    const y2 = this.slope(line_2) * x2 + this.intercept(line_2);
+    y2 = this.slope(line_2) * x2 + this.intercept(line_2);
   }
   this.record(show, [x1, y1], [x2, y2], name);
 },
 
 linesToLine(show, [line_1, line_2], [line_3, z], name) {
+  let x1, y1;
   if (this.direction(line_3) == "y=") {
-    const x1 = z;
-    const y1 = this.slope(line_3) * x1 + this.intercept(line_3);
+    x1 = z;
+    y1 = this.slope(line_3) * x1 + this.intercept(line_3);
   } else if (this.direction(line_3) == "x=") {
-    const y1 = z;
-    const x1 = this.intercept(line_3);
+    y1 = z;
+    x1 = this.intercept(line_3);
   }
   this.linesToVector(show, [line_1, line_2], [x1, y1], name);
 },
 
 linesToLines(show, [line_1, line_2], [line_3, line_4], name) {
+  let x2, y2;
   if (this.direction(line_3) == "y=") {
     if (this.direction(line_4) == "y=") {
-      const x2 = ((this.intercept(line_4) - this.intercept(line_3)) / (this.slope(line_4) - this.slope(line_3)));
+      x2 = ((this.intercept(line_4) - this.intercept(line_3)) / (this.slope(line_4) - this.slope(line_3)));
     } else if (this.direction(line_4) == "x=") {
-      const x2 = this.intercept(line_4);
+      x2 = this.intercept(line_4);
     }
-    const y2 = this.slope(line_3) * x2 + this.intercept(line_3);
+    y2 = this.slope(line_3) * x2 + this.intercept(line_3);
   } else if (this.direction(line_3) == "x=") {
     if (this.direction(line_4) == "y=") {
-      const x2 = this.intercept(line_3);
+      x2 = this.intercept(line_3);
     }
-    const y2 = this.slope(line_4) * x2 + this.intercept(line_4);
+    y2 = this.slope(line_4) * x2 + this.intercept(line_4);
   }
   this.linesToVector(show, [line_1, line_2], [x2, y2], name);
 },
 
 lineToLine(show, [line_1, z1], [line_2, z2], name) {
+  let x1, y1;
   if (this.direction(line_2) == "y=") {
-    const x1 = z2;
-    const y1 = this.slope(line_2) * x1 + this.intercept(line_2);
+    x1 = z2;
+    y1 = this.slope(line_2) * x1 + this.intercept(line_2);
   } else if (this.direction(line_2) == "x=") {
-    const y1 = z2;
-    const x1 = this.intercept(line_2);
+    y1 = z2;
+    x1 = this.intercept(line_2);
   }
   this.lineToVector(show, [line_1, z1], [x1, y1], name);
 },
@@ -152,7 +158,7 @@ writeLine(show, [x1, y1], [x2, y2], name) {
     this.linesToLine(show, [str[0], str[1]], [str[2], num[0]], name);
   }
   else if (num.length == 2) {
-    if ((num[0] == x1 && num[1] == x2]) || (num[0] == y1 && num[1] == y2) || (num[0] == x1 && num[1] == y2) || (num[0] == y1 && num[1] == x2)) {
+    if ((num[0] == x1 && num[1] == x2) || (num[0] == y1 && num[1] == y2) || (num[0] == x1 && num[1] == y2) || (num[0] == y1 && num[1] == x2)) {
       this.lineToLine(show, [str[0], num[0]], [str[1], num[1]], name);
     } else {
       this.linesToVector(show, [str[0], str[1]], [num[0], num[1]], name);
@@ -167,6 +173,7 @@ writeLine(show, [x1, y1], [x2, y2], name) {
 },
 
 mirror(show, line, axis, name) {
+  let x31, x32, y31, y32;
   const x11 = this.start(line)[0];
   const x12 = this.end(line)[0];
   const y11 = this.start(line)[1];
@@ -174,16 +181,16 @@ mirror(show, line, axis, name) {
   const a = this.slope(axis);
   const b = this.intercept(axis);
   if (this.direction(axis) == "y=") {
-    const x31 = ((x11 / a + y11) - b) / (a + 1 / a);
-    const x32 = ((x12 / a + y12) - b) / (a + 1 / a);
-    const y31 = a * x31 + b;
-    const y32 = a * x32 + b;
+    x31 = ((x11 / a + y11) - b) / (a + 1 / a);
+    x32 = ((x12 / a + y12) - b) / (a + 1 / a);
+    y31 = a * x31 + b;
+    y32 = a * x32 + b;
   }
   else {
-    const x31 = this.intercept(axis);
-    const x32 = x31;
-    const y31 = y11;
-    const y32 = y12;
+    x31 = this.intercept(axis);
+    x32 = x31;
+    y31 = y11;
+    y32 = y12;
   }
   const x21 = 2 * x31 - x11;
   const y21 = 2 * y31 - y11;
