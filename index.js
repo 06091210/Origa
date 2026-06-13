@@ -39,9 +39,9 @@ previous() {
 
 square(side) {
   this.ctx.moveTo(1, 1);
-  this.ctx.lineTo(1, 1 + side);
-  this.ctx.lineTo(1 + side, 1 + side);
-  this.ctx.lineTo(1 + side, 1);
+  this.ctx.lineTo(1, 1 + this.side);
+  this.ctx.lineTo(1 + this.side, 1 + this.side);
+  this.ctx.lineTo(1 + this.side, 1);
   this.ctx.lineTo(1, 1);
 },
 
@@ -54,18 +54,18 @@ equalDivision(show, direction, n, m, name) {
   }
   if (m.length == 0) {
     for (i = 1; i < n; i++) {
-      const x1 = 1 + (side - 1) * i * dir / n
-      const y1 = 1 + (side - 1) * i * Math.abs(dir - 1) / n;
-      const x2 = 1 + (side - 1) * i * dir / n + side * Math.abs(dir - 1)
-      const y2 = 1 + (side - 1) * i * Math.abs(dir - 1) / n + side * dir;
+      const x1 = 1 + (this.side - 1) * i * dir / n
+      const y1 = 1 + (this.side - 1) * i * Math.abs(dir - 1) / n;
+      const x2 = 1 + (this.side - 1) * i * dir / n + this.side * Math.abs(dir - 1)
+      const y2 = 1 + (this.side - 1) * i * Math.abs(dir - 1) / n + this.side * dir;
       this.record(show, [x1, y1], [x2, y2], name + String(i));
     }
   } else {
     for (i = 0; i < m.length; i++) {
-      const x1 = 1 + (side - 1) * m[i] * dir / n
-      const y1 = 1 + (side - 1) * m[i] * Math.abs(dir - 1) / n;
-      const x2 = 1 + (side - 1) * m[i] * dir / n + side * Math.abs(dir - 1)
-      const y2 = 1 + (side - 1) * m[i] * Math.abs(dir - 1) / n + side * dir;
+      const x1 = 1 + (this.side - 1) * m[i] * dir / n
+      const y1 = 1 + (this.side - 1) * m[i] * Math.abs(dir - 1) / n;
+      const x2 = 1 + (this.side - 1) * m[i] * dir / n + side * Math.abs(dir - 1)
+      const y2 = 1 + (this.side - 1) * m[i] * Math.abs(dir - 1) / n + this.side * dir;
       this.record(show, [x1, y1], [x2, y2], name + String(i + 1));
     }
   }
