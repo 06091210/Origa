@@ -249,34 +249,3 @@ end(line) {
   return this.Lines[index][4];
 }
 };
-
-/*
-ctx.beginPath();
-square();
-frame();
-equalDivision(false, "row", 32, [], "base");
-equalDivision(false, "row", 2, [], "zero");
-equalDivision(false, "row", 32, [13, 14], "first");
-equalDivision(true, "row", 32, [15], "second");
-mirror(true, "second1", "zero1", "second2");
-valley();
-equalDivision(false, "line", 32, [1], "third");
-writeLine(true, ["first2", "third1"], ["third1", 1], "fourth1");
-mirror(true, "fourth1", "zero1", "fourth2");
-writeLine(true, ["third1", "first2"], ["first2", 500], "fifth1");
-mirror(true, "fifth1", "zero1", "fifth2");
-writeLine(true, ["fourth1", "fifth1"], ["second1", 1], "sixth1");
-mirror(true, "sixth1", "zero1", "sixth2");
-mountain();
-writeLine(true, ["first2", "third1"], ["first1", 1], "seventh1");
-mirror(true, "seventh1", "zero1", "seventh2");
-valley();
-equalDivision(true, "row", 32, [7], "eighth");
-mirror(true, "eighth1", "zero1", "eighth2");
-writeLine(true, ["eighth1", "third1"], ["base2", 1], "ninth1");
-mirror(true, "ninth1", "zero1", "ninth2");
-mountain();
-ctx.stroke();
-
-console.log(Lines);
-*/
