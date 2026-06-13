@@ -37,7 +37,7 @@ previous() {
   this.ctx.beginPath();
 },
 
-square(side) {
+square() {
   this.ctx.moveTo(1, 1);
   this.ctx.lineTo(1, 1 + this.side);
   this.ctx.lineTo(1 + this.side, 1 + this.side);
