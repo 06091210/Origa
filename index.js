@@ -49,7 +49,7 @@ equalDivision(show, direction, n, m, name) {
   let dir;
   let x1, y1, x2, y2;
   if (direction == "row") {
-   dir = 1;
+    dir = 1;
   } else if (direction == "line") {
     dir = 0;
   }
@@ -65,7 +65,7 @@ equalDivision(show, direction, n, m, name) {
     for (let i = 0; i < m.length; i++) {
       x1 = 1 + (this.side - 1) * m[i] * dir / n
       y1 = 1 + (this.side - 1) * m[i] * Math.abs(dir - 1) / n;
-      x2 = 1 + (this.side - 1) * m[i] * dir / n + side * Math.abs(dir - 1)
+      x2 = 1 + (this.side - 1) * m[i] * dir / n + this.side * Math.abs(dir - 1)
       y2 = 1 + (this.side - 1) * m[i] * Math.abs(dir - 1) / n + this.side * dir;
       this.record(show, [x1, y1], [x2, y2], name + String(i + 1));
     }
