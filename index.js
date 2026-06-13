@@ -46,10 +46,11 @@ square(side) {
 },
 
 equalDivision(show, direction, n, m, name) {
+  let dir;
   if (direction == "row") {
-    const dir = 1;
+   dir = 1;
   } else if (direction == "line") {
-    const dir = 0;
+    dir = 0;
   }
   if (m.length == 0) {
     for (i = 1; i < n; i++) {
@@ -198,7 +199,7 @@ record(show, [x1, y1], [x2, y2], name) {
     this.ctx.moveTo(x1, y1);
     this.ctx.lineTo(x2, y2);
   }
-  const a = (y2 - y1) / (x2 - x1);
+  let a = (y2 - y1) / (x2 - x1);
   if (Math.abs(a) != Infinity) {
     this.Lines.push(name, ["y=", a, y1 - a * x1, [x1, y1], [x2, y2]]);
   } else {
