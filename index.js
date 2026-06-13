@@ -151,7 +151,7 @@ writeLine(show, [x1, y1], [x2, y2], name) {
     this.linesToLine(show, [str[0], str[1]], [str[2], num[0]], name);
   }
   else if (num.length == 2) {
-    if ((num == [x1, x2]) || (num == [y1, y2]) || (num == [x1, y2]) || (num == [y1, x2])) {
+    if ((num[0] == x1 && num[1] == x2]) || (num[0] == y1 && num[1] == y2) || (num[0] == x1 && num[1] == y2) || (num[0] == y1 && num[1] == x2)) {
       this.lineToLine(show, [str[0], num[0]], [str[1], num[1]], name);
     } else {
       this.linesToVector(show, [str[0], str[1]], [num[0], num[1]], name);
