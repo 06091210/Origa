@@ -142,8 +142,8 @@ lineToLine(show, [line_1, z1], [line_2, z2], name) {
 },
 
 writeLine(show, [x1, y1], [x2, y2], name) {
-  str = this.countType("string", [x1, y1], [x2, y2]);
-  num = this.countType("number", [x1, y1], [x2, y2]);
+  const str = this.countType("string", [x1, y1], [x2, y2]);
+  const num = this.countType("number", [x1, y1], [x2, y2]);
   if (num.length == 0) {
     this.linesToLines(show, [x1, y1], [x2, y2], name);
   }
@@ -166,28 +166,28 @@ writeLine(show, [x1, y1], [x2, y2], name) {
 },
 
 mirror(show, line, axis, name) {
-  x11 = this.start(line)[0];
-  x12 = this.end(line)[0];
-  y11 = this.start(line)[1];
-  y12 = this.end(line)[1];
-  a = this.slope(axis);
-  b = this.intercept(axis);
+  const x11 = this.start(line)[0];
+  const x12 = this.end(line)[0];
+  const y11 = this.start(line)[1];
+  const y12 = this.end(line)[1];
+  const a = this.slope(axis);
+  const b = this.intercept(axis);
   if (this.direction(axis) == "y=") {
-    x31 = ((x11 / a + y11) - b) / (a + 1 / a);
-    x32 = ((x12 / a + y12) - b) / (a + 1 / a);
-    y31 = a * x31 + b;
-    y32 = a * x32 + b;
+    const x31 = ((x11 / a + y11) - b) / (a + 1 / a);
+    const x32 = ((x12 / a + y12) - b) / (a + 1 / a);
+    const y31 = a * x31 + b;
+    const y32 = a * x32 + b;
   }
   else {
-    x31 = this.intercept(axis);
-    x32 = x31;
-    y31 = y11;
-    y32 = y12;
+    const x31 = this.intercept(axis);
+    const x32 = x31;
+    const y31 = y11;
+    const y32 = y12;
   }
-  x21 = 2 * x31 - x11;
-  y21 = 2 * y31 - y11;
-  x22 = 2 * x32 - x12;
-  y22 = 2 * y32 - y12;
+  const x21 = 2 * x31 - x11;
+  const y21 = 2 * y31 - y11;
+  const x22 = 2 * x32 - x12;
+  const y22 = 2 * y32 - y12;
   this.ctx.moveTo(x21, y21);
   this.ctx.lineTo(x22, y22);
   this.writeLine(show, [x21, y21], [x22, y22], name);
@@ -198,7 +198,7 @@ record(show, [x1, y1], [x2, y2], name) {
     this.ctx.moveTo(x1, y1);
     this.ctx.lineTo(x2, y2);
   }
-  a = (y2 - y1) / (x2 - x1);
+  const a = (y2 - y1) / (x2 - x1);
   if (Math.abs(a) != Infinity) {
     this.Lines.push(name, ["y=", a, y1 - a * x1, [x1, y1], [x2, y2]]);
   } else {
@@ -208,7 +208,7 @@ record(show, [x1, y1], [x2, y2], name) {
 },
 
 countType(type, [x1, y1], [x2, y2]) {
-  count = [];
+  const count = [];
   if (typeof x1 == type) { count.push(x1); }
   if (typeof y1 == type) { count.push(y1); }
   if (typeof x2 == type) { count.push(x2); }
@@ -217,27 +217,27 @@ countType(type, [x1, y1], [x2, y2]) {
 },
 
 slope(line) {
-  index = this.Lines.indexOf(line) + 1;
+  const index = this.Lines.indexOf(line) + 1;
   return this.Lines[index][1];
 },
 
 intercept(line) {
-  index = this.Lines.indexOf(line) + 1;
+  const index = this.Lines.indexOf(line) + 1;
   return this.Lines[index][2];
 },
 
 direction(line) {
-  index = this.Lines.indexOf(line) + 1;
+  const index = this.Lines.indexOf(line) + 1;
   return this.Lines[index][0];
 },
 
 start(line) {
-  index = this.Lines.indexOf(line) + 1;
+  const index = this.Lines.indexOf(line) + 1;
   return this.Lines[index][3];
 },
 
 end(line) {
-  index = this.Lines.indexOf(line) + 1;
+  const index = this.Lines.indexOf(line) + 1;
   return this.Lines[index][4];
 }
 };
