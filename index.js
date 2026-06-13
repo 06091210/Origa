@@ -1,5 +1,5 @@
 window.origa = {
-function setup(Name="canvas", Side=500) {
+setup(Name="canvas", Side=500) {
   const canvas = document.getElementById(Name);
   const ctx = canvas.getContext('2d');
 
@@ -7,35 +7,35 @@ function setup(Name="canvas", Side=500) {
   const Lines = [];
 }
 
-function valley() {
+valley() {
   ctx.strokeStyle = "#0000ff";
   ctx.setLineDash([10, 5]);
   ctx.stroke();
   ctx.beginPath();
 }
 
-function mountain() {
+mountain() {
   ctx.strokeStyle = "#ff0000";
   ctx.setLineDash([10, 5, 3, 5]);
   ctx.stroke();
   ctx.beginPath();
 }
 
-function frame() {
+frame() {
   ctx.strokeStyle = "#000000";
   ctx.setLineDash([]);
   ctx.stroke();
   ctx.beginPath();
 }
 
-function previous() {
+previous() {
   ctx.strokeStyle = "#b0b0b0";
   ctx.setLineDash([]);
   ctx.stroke();
   ctx.beginPath();
 }
 
-function square() {
+square() {
   ctx.moveTo(1, 1);
   ctx.lineTo(1, 1 + side);
   ctx.lineTo(1 + side, 1 + side);
@@ -43,7 +43,7 @@ function square() {
   ctx.lineTo(1, 1);
 }
 
-function equalDivision(show, direction, n, m, name) {
+equalDivision(show, direction, n, m, name) {
   if (direction == "row") {
     dir = 1;
   } else if (direction == "line") {
@@ -139,7 +139,7 @@ function lineToLine(show, [line_1, z1], [line_2, z2], name) {
   lineToVector(show, [line_1, z1], [line_2, z2], name);
 }
 
-function writeLine(show, [x1, y1], [x2, y2], name) {
+writeLine(show, [x1, y1], [x2, y2], name) {
   str = countType("string", [x1, y1], [x2, y2]);
   num = countType("number", [x1, y1], [x2, y2]);
   if (num.length == 0) {
@@ -163,7 +163,7 @@ function writeLine(show, [x1, y1], [x2, y2], name) {
   }
 }
 
-function mirror(show, line, axis, name) {
+mirror(show, line, axis, name) {
   x11 = start(line)[0];
   x12 = end(line)[0];
   y11 = start(line)[1];
