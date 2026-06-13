@@ -196,8 +196,6 @@ mirror(show, line, axis, name) {
   const y21 = 2 * y31 - y11;
   const x22 = 2 * x32 - x12;
   const y22 = 2 * y32 - y12;
-  this.ctx.moveTo(x21, y21);
-  this.ctx.lineTo(x22, y22);
   this.writeLine(show, [x21, y21], [x22, y22], name);
 },
 
