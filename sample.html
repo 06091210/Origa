@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Origa</title>
+</head>
+<body>
+  <canvas height="600" width="600" id="canvas"></canvas>
+  <script src="https://06091210.github.io/Origa/index.js"></script>
+  <script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    origa.setup();
+    
+    ctx.beginPath();
+    origa.square();
+    origa.frame();
+    origa.equalDivision(false, "row", 32, [], "base");
+    origa.equalDivision(false, "row", 2, [], "zero");
+    origa.equalDivision(false, "row", 32, [13, 14], "first");
+    origa.equalDivision(true, "row", 32, [15], "second");
+    origa.mirror(true, "second1", "zero1", "second2");
+    origa.valley();
+    origa.equalDivision(false, "line", 32, [1], "third");
+    origa.writeLine(true, ["first2", "third1"], ["third1", 1], "fourth1");
+    origa.mirror(true, "fourth1", "zero1", "fourth2");
+    origa.writeLine(true, ["third1", "first2"], ["first2", 500], "fifth1");
+    origa.mirror(true, "fifth1", "zero1", "fifth2");
+    origa.writeLine(true, ["fourth1", "fifth1"], ["second1", 1], "sixth1");
+    origa.mirror(true, "sixth1", "zero1", "sixth2");
+    origa.mountain();
+    origa.writeLine(true, ["first2", "third1"], ["first1", 1], "seventh1");
+    origa.mirror(true, "seventh1", "zero1", "seventh2");
+    origa.valley();
+    origa.equalDivision(true, "row", 32, [7], "eighth");
+    origa.mirror(true, "eighth1", "zero1", "eighth2");
+    origa.writeLine(true, ["eighth1", "third1"], ["base2", 1], "ninth1");
+    origa.mirror(true, "ninth1", "zero1", "ninth2");
+    origa.mountain();
+    ctx.stroke();
+    
+    console.log(origa.Lines);
+  </script>
+</body>
+</html>
