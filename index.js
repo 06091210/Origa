@@ -174,22 +174,31 @@ writeLine(show, [x1, y1], [x2, y2], name) {
 
 mirror(show, line, axis, name) {
   let x31, x32, y31, y32;
-  const x11 = this.start(line)[0];
-  const x12 = this.end(line)[0];
-  const y11 = this.start(line)[1];
-  const y12 = this.end(line)[1];
   const a = this.slope(axis);
   const b = this.intercept(axis);
+  
+  const x11 = this.start(line)[0];
+  const y11 = this.start(line)[1];
+  const x12 = this.end(line)[0];
+  const y12 = this.end(line)[1];
+  
   if (this.direction(axis) == "y=") {
-    x31 = ((x11 / a + y11) - b) / (a + 1 / a);
-    x32 = ((x12 / a + y12) - b) / (a + 1 / a);
-    y31 = a * x31 + b;
-    y32 = a * x32 + b;
+    if (a != 0) {
+      x31 = ((x11 / a + y11) - b) / (a + 1 / a);
+      y31 = a * x31 + b;
+      x32 = ((x12 / a + y12) - b) / (a + 1 / a);
+      y32 = a * x32 + b;
+    } else {
+      x31 = x11;
+      y31 = this.intercept(axis);
+      x32 = x12;
+      y32 = y31;
+    }
   }
   else {
     x31 = this.intercept(axis);
-    x32 = x31;
     y31 = y11;
+    x32 = x31;
     y32 = y12;
   }
   const x21 = 2 * x31 - x11;
@@ -211,6 +220,27 @@ record(show, [x1, y1], [x2, y2], name) {
     a = (x2 - x1) / (y2 - y1);
     this.Lines.push(name, ["x=", a, x1 - a * y1, [x1, y1], [x2, y2]]);
   }
+},
+
+cross(line_1, line_2) {
+  const a1 = this.slope(line_1);
+  const b1 = this.intercept(line_1);
+  const a2 = this.slope(line_2);
+  const b2 = this.intercept(line_2);
+  const x3, y3;
+  if (this.direction(line_1) == "y=") {
+    if (this.direction(line_2) == "y=") {
+      x3 = ( b2 - b1 ) / ( a1 - a2 );
+    } else {
+      x3 = b2;
+    }
+    y3 = a1 * x3 + b1;
+  }
+  else {
+    x3 = b1;
+    y3 = a2 * x3 + b2;
+  }
+  return [x3, y3];
 },
 
 countType(type, [x1, y1], [x2, y2]) {
