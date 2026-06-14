@@ -19,11 +19,10 @@
     origa.equalDivision(false, "row", 32, [], "base");
     origa.equalDivision(false, "row", 2, [], "zero");
     origa.equalDivision(false, "row", 32, [13, 14], "first");
-    origa.equalDivision(true, "row", 32, [15], "second");
-    origa.mirror(true, "second1", "zero1", "second2");
+    origa.equalDivision(true, "row", 32, [15, 17], "second");
     origa.valley();
     origa.equalDivision(false, "line", 32, [1], "third");
-    origa.writeLine(true, ["first2", "third1"], ["third1", 1], "fourth1");
+    origa.writeLine(true, ["first2", "third1"], [1, "third1"], "fourth1");
     origa.mirror(true, "fourth1", "zero1", "fourth2");
     origa.writeLine(true, ["third1", "first2"], ["first2", 500], "fifth1");
     origa.mirror(true, "fifth1", "zero1", "fifth2");
@@ -33,10 +32,11 @@
     origa.writeLine(true, ["first2", "third1"], ["first1", 1], "seventh1");
     origa.mirror(true, "seventh1", "zero1", "seventh2");
     origa.valley();
-    origa.equalDivision(true, "row", 32, [7], "eighth");
-    origa.mirror(true, "eighth1", "zero1", "eighth2");
+    origa.equalDivision(false, "row", 32, [7, 25], "eighth");
     origa.writeLine(true, ["eighth1", "third1"], ["base2", 1], "ninth1");
     origa.mirror(true, "ninth1", "zero1", "ninth2");
+    origa.writeLine(true, ["ninth1", "fourth1"], ["eighth1", 500], "tenth1");
+    origa.mirror(true, "tenth1", "zero1", "tenth2");
     origa.mountain();
     ctx.stroke();
     
