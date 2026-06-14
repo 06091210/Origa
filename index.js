@@ -170,30 +170,38 @@ writeLine(show, [x1, y1], [x2, y2], name) {
     this.linesToLines(show, [x1, y1], [x2, y2], name);
   }
   else if (num.length == 1) {
-    if ((num[0] == x1) || (num[0] == x2)) {
+    if (num[0] == x1) {
+      this.linesToLine(show, "x", [str[1], str[2]], [str[0], num[0]], name);
+    } else if (num[0] == x2) {
       this.linesToLine(show, "x", [str[0], str[1]], [str[2], num[0]], name);
+    } else if (num[0] == y1) {
+      this.linesToLine(show, "y", [str[1], str[2]], [str[0], num[0]], name);
     } else {
       this.linesToLine(show, "y", [str[0], str[1]], [str[2], num[0]], name);
     }
   }
   else if (num.length == 2) {
-    if (num[0] == x1 && num[1] == x2) {
+    if ((num[0] == x1) && (num[1] == x2)) {
       this.lineToLine(show, "x", "x", [str[0], num[0]], [str[1], num[1]], name);
-    } else if (num[0] == x1 && num[1] == y2) {
+    } else if ((num[0] == x1) && (num[1] == y2)) {
       this.lineToLine(show, "x", "y", [str[0], num[0]], [str[1], num[1]], name);
-    } else if (num[0] == y1 && num[1] == x2) {
+    } else if ((num[0] == y1) && (num[1] == x2)) {
       this.lineToLine(show, "y", "x", [str[0], num[0]], [str[1], num[1]], name);
-    } else if (num[0] == y1 && num[1] == y2) {
+    } else if ((num[0] == y1) && (num[1] == y2)) {
       this.lineToLine(show, "y", "y", [str[0], num[0]], [str[1], num[1]], name);
     } else {
       this.linesToVector(show, [str[0], str[1]], [num[0], num[1]], name);
     }
   }
   else if (num.length == 3) {
-    if ((num[0] == x1) || (num[0] == x2)) {
-      this.lineToVector(show, "x", [str[0], num[0]], [num[1], num[2]], name);
-    } else {
+    if (str[0] == x1) {
       this.lineToVector(show, "y", [str[0], num[0]], [num[1], num[2]], name);
+    } else if (str[0] == y1) {
+      this.lineToVector(show, "x", [str[0], num[0]], [num[1], num[2]], name);
+    } else if (str[0] == x2) {
+      this.lineToVector(show, "y", [str[0], num[2]], [num[0], num[1]], name);
+    } else {
+      this.lineToVector(show, "x", [str[0], num[2]], [num[0], num[1]], name);
     }
   }
   else if (num.length == 4) {
