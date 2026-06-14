@@ -190,7 +190,11 @@ writeLine(show, [x1, y1], [x2, y2], name) {
     }
   }
   else if (num.length == 3) {
-    this.lineToVector(show, [str[0], num[0]], [num[1], num[2]], name);
+    if ((num[0] == x1) || (num[0] == x2)) {
+      this.lineToVector(show, "x", [str[0], num[0]], [num[1], num[2]], name);
+    } else {
+      this.lineToVector(show, "y", [str[0], num[0]], [num[1], num[2]], name);
+    }
   }
   else if (num.length == 4) {
     this.vectorToVector(show, [x1, y1], [x2, y2], name);
