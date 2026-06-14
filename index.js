@@ -92,12 +92,12 @@ linesToVector(show, [line_1, line_2], [x1, y1], name) {
   let x2, y2;
   if (this.direction(line_1) == "y=") {
     if (this.direction(line_2) == "y=") {
-      x2 = ((this.intercept(line_2) - this.intercept(line_1)) / (this.slope(line_2) - this.slope(line_1)));
+      x2 = ((this.intercept(line_2) - this.intercept(line_1)) / (this.slope(line_1) - this.slope(line_2)));
     } else if (this.direction(line_2) == "x=") {
       x2 = this.intercept(line_2);
     }
     y2 = this.slope(line_1) * x2 + this.intercept(line_1);
-  } else if (this.direction(line_1) == "x=") {
+  } else {
     if (this.direction(line_2) == "y=") {
       x2 = this.intercept(line_1);
     }
