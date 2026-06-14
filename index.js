@@ -79,7 +79,7 @@ vectorToVector(show, [x1, y1], [x2, y2], name) {
 lineToVector(show, direction, [line, z], [x1, y1], name) {
   let x2, y2;
   if (this.direction(line) == "y=") {
-    if (direction = "x") {
+    if (direction == "x") {
       x2 = z;
       y2 = this.slope(line) * x2 + this.intercept(line);
     } else {
@@ -256,7 +256,7 @@ cross(line_1, line_2) {
   const b1 = this.intercept(line_1);
   const a2 = this.slope(line_2);
   const b2 = this.intercept(line_2);
-  const x3, y3;
+  let x3, y3;
   if (this.direction(line_1) == "y=") {
     if (this.direction(line_2) == "y=") {
       x3 = ( b2 - b1 ) / ( a1 - a2 );
