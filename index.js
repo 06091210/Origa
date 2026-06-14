@@ -76,11 +76,16 @@ vectorToVector(show, [x1, y1], [x2, y2], name) {
   this.record(show, [x1, y1], [x2, y2], name);
 },
 
-lineToVector(show, [line, z], [x1, y1], name) {
+lineToVector(show, direction, [line, z], [x1, y1], name) {
   let x2, y2;
   if (this.direction(line) == "y=") {
-    x2 = z;
-    y2 = this.slope(line) * x2 + this.intercept(line);
+    if (direction = "x") {
+      x2 = z;
+      y2 = this.slope(line) * x2 + this.intercept(line);
+    } else {
+      y2 = z;
+      x2 = (y2 - this.intercept(line)) / this.slope(line);
+    }
   } else if (this.direction(line) == "x=") {
     y2 = z;
     x2 = this.intercept(line);
@@ -106,12 +111,17 @@ linesToVector(show, [line_1, line_2], [x1, y1], name) {
   this.record(show, [x1, y1], [x2, y2], name);
 },
 
-linesToLine(show, [line_1, line_2], [line_3, z], name) {
+linesToLine(show, direction, [line_1, line_2], [line_3, z], name) {
   let x1, y1;
   if (this.direction(line_3) == "y=") {
-    x1 = z;
-    y1 = this.slope(line_3) * x1 + this.intercept(line_3);
-  } else if (this.direction(line_3) == "x=") {
+    if (direction == "x") {
+      x1 = z;
+      y1 = this.slope(line_3) * x1 + this.intercept(line_3);
+    } else {
+      y1 = z;
+      x1 = (y1 - this.intercept(line_3)) / this.slope(line_3);
+    }
+  } else {
     y1 = z;
     x1 = this.intercept(line_3);
   }
@@ -123,11 +133,11 @@ linesToLines(show, [line_1, line_2], [line_3, line_4], name) {
   if (this.direction(line_3) == "y=") {
     if (this.direction(line_4) == "y=") {
       x2 = ((this.intercept(line_4) - this.intercept(line_3)) / (this.slope(line_4) - this.slope(line_3)));
-    } else if (this.direction(line_4) == "x=") {
+    } else {
       x2 = this.intercept(line_4);
     }
     y2 = this.slope(line_3) * x2 + this.intercept(line_3);
-  } else if (this.direction(line_3) == "x=") {
+  } else {
     if (this.direction(line_4) == "y=") {
       x2 = this.intercept(line_3);
     }
@@ -136,16 +146,21 @@ linesToLines(show, [line_1, line_2], [line_3, line_4], name) {
   this.linesToVector(show, [line_1, line_2], [x2, y2], name);
 },
 
-lineToLine(show, [line_1, z1], [line_2, z2], name) {
+lineToLine(show, direction1, direction2, [line_1, z1], [line_2, z2], name) {
   let x1, y1;
   if (this.direction(line_2) == "y=") {
-    x1 = z2;
-    y1 = this.slope(line_2) * x1 + this.intercept(line_2);
-  } else if (this.direction(line_2) == "x=") {
+    if (direction2 == "x") {
+      x1 = z2;
+      y1 = this.slope(line_2) * x1 + this.intercept(line_2);
+    } else {
+      y1 = z2;
+      x1 = (y1 - this.intercept(line_2)) / this.slope(line_2);
+    }
+  } else {
     y1 = z2;
     x1 = this.intercept(line_2);
   }
-  this.lineToVector(show, [line_1, z1], [x1, y1], name);
+  this.lineToVector(show, direction1, [line_1, z1], [x1, y1], name);
 },
 
 writeLine(show, [x1, y1], [x2, y2], name) {
@@ -155,11 +170,21 @@ writeLine(show, [x1, y1], [x2, y2], name) {
     this.linesToLines(show, [x1, y1], [x2, y2], name);
   }
   else if (num.length == 1) {
-    this.linesToLine(show, [str[0], str[1]], [str[2], num[0]], name);
+    if ((num[0] == x1) || (num[0] == x2)) {
+      this.linesToLine(show, "x", [str[0], str[1]], [str[2], num[0]], name);
+    } else {
+      this.linesToLine(show, "y", [str[0], str[1]], [str[2], num[0]], name);
+    }
   }
   else if (num.length == 2) {
-    if ((num[0] == x1 && num[1] == x2) || (num[0] == y1 && num[1] == y2) || (num[0] == x1 && num[1] == y2) || (num[0] == y1 && num[1] == x2)) {
-      this.lineToLine(show, [str[0], num[0]], [str[1], num[1]], name);
+    if (num[0] == x1 && num[1] == x2) {
+      this.lineToLine(show, "x", "x", [str[0], num[0]], [str[1], num[1]], name);
+    } else if (num[0] == x1 && num[1] == y2) {
+      this.lineToLine(show, "x", "y", [str[0], num[0]], [str[1], num[1]], name);
+    } else if (num[0] == y1 && num[1] == x2) {
+      this.lineToLine(show, "y", "x", [str[0], num[0]], [str[1], num[1]], name);
+    } else if (num[0] == y1 && num[1] == y2) {
+      this.lineToLine(show, "y", "y", [str[0], num[0]], [str[1], num[1]], name);
     } else {
       this.linesToVector(show, [str[0], str[1]], [num[0], num[1]], name);
     }
