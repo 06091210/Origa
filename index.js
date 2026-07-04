@@ -9,7 +9,8 @@ setup(Name="canvas", Side=500) {
   this.canvas = document.getElementById(Name);
   this.ctx = canvas.getContext("2d");
   this.side = Side;
-  this.start = [(this.canvas.width - this.side) / 2, (this.canvas.height - this.side) / 2];
+  this.start.push((this.canvas.width - this.side) / 2);
+  this.start.push((this.canvas.height - this.side) / 2);
 },
 
 valley() {
