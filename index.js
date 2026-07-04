@@ -136,7 +136,7 @@ linesToLines(show, [line_1, line_2], [line_3, line_4], name) {
   let x2, y2;
   if (this.direction(line_3) == "y=") {
     if (this.direction(line_4) == "y=") {
-      x2 = ((this.intercept(line_4) - this.intercept(line_3)) / (this.slope(line_4) - this.slope(line_3)));
+      x2 = ((this.intercept(line_4) - this.intercept(line_3)) / (this.slope(line_3) - this.slope(line_4)));
     } else {
       x2 = this.intercept(line_4);
     }
