@@ -61,18 +61,18 @@ equalDivision(show, direction, n, m, name) {
   }
   if (m.length == 0) {
     for (let i = 1; i < n; i++) {
-      x1 = x + this.side * i * dir / n
-      y1 = y + this.side * i * Math.abs(dir - 1) / n;
-      x2 = x + this.side * i * dir / n + this.side * Math.abs(dir - 1)
-      y2 = y + this.side * i * Math.abs(dir - 1) / n + this.side * dir;
+      x1 = x + (this.side - 1) * i * dir / n
+      y1 = y + (this.side - 1) * i * Math.abs(dir - 1) / n;
+      x2 = x + (this.side - 1) * i * dir / n + this.side * Math.abs(dir - 1)
+      y2 = y + (this.side - 1) * i * Math.abs(dir - 1) / n + this.side * dir;
       this.record(show, [x1, y1], [x2, y2], name + String(i));
     }
   } else {
     for (let i = 0; i < m.length; i++) {
-      x1 = x + this.side * m[i] * dir / n
-      y1 = y + this.side * m[i] * Math.abs(dir - 1) / n;
-      x2 = x + this.side * m[i] * dir / n + this.side * Math.abs(dir - 1)
-      y2 = y + this.side * m[i] * Math.abs(dir - 1) / n + this.side * dir;
+      x1 = x + (this.side - 1) * m[i] * dir / n
+      y1 = y + (this.side - 1) * m[i] * Math.abs(dir - 1) / n;
+      x2 = x + (this.side - 1) * m[i] * dir / n + this.side * Math.abs(dir - 1)
+      y2 = y + (this.side - 1) * m[i] * Math.abs(dir - 1) / n + this.side * dir;
       this.record(show, [x1, y1], [x2, y2], name + String(i + 1));
     }
   }
