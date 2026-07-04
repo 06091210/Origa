@@ -1,11 +1,10 @@
 window.origa = {
 ctx: null,
-canvas: null,
 Lines: [],
 side: 500,
 
 setup(Name="canvas", Side=500) {
-  this.canvas = document.getElementById(Name);
+  const canvas = document.getElementById(Name);
   this.ctx = canvas.getContext("2d");
   this.side = Side;
 },
@@ -39,13 +38,11 @@ previous() {
 },
 
 square() {
-  const x = (this.canvas.width - this.side) / 2;
-  const y = (this.canvas.height - this.side) / 2;
-  this.ctx.moveTo(x, y);
-  this.ctx.lineTo(x, y + this.side);
-  this.ctx.lineTo(x + this.side, y + this.side);
-  this.ctx.lineTo(x + this.side, y);
-  this.ctx.lineTo(x, y);
+  this.ctx.moveTo(1, 1);
+  this.ctx.lineTo(1, 1 + this.side);
+  this.ctx.lineTo(1 + this.side, 1 + this.side);
+  this.ctx.lineTo(1 + this.side, 1);
+  this.ctx.lineTo(1, 1);
 },
 
 equalDivision(show, direction, n, m, name) {
