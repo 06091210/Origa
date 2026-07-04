@@ -40,8 +40,7 @@ previous() {
 },
 
 square() {
-  const x = this.start[0];
-  const y = this.start[1];
+  const [x, y] = this.start;
   this.ctx.moveTo(x, y);
   this.ctx.lineTo(x, y + this.side);
   this.ctx.lineTo(x + this.side, y + this.side);
@@ -52,8 +51,7 @@ square() {
 equalDivision(show, direction, n, m, name) {
   let dir;
   let x1, y1, x2, y2;
-  const x = this.start[0];
-  const y = this.start[1];
+  //const [x, y] = this.start;
   if (direction == "row") {
     dir = 1;
   } else if (direction == "line") {
@@ -61,18 +59,18 @@ equalDivision(show, direction, n, m, name) {
   }
   if (m.length == 0) {
     for (let i = 1; i < n; i++) {
-      x1 = x + (this.side - 1) * i * dir / n
-      y1 = y + (this.side - 1) * i * Math.abs(dir - 1) / n;
-      x2 = x + (this.side - 1) * i * dir / n + this.side * Math.abs(dir - 1)
-      y2 = y + (this.side - 1) * i * Math.abs(dir - 1) / n + this.side * dir;
+      x1 = 1 + this.side * i * dir / n
+      y1 = 1 + this.side * i * Math.abs(dir - 1) / n;
+      x2 = 1 + this.side * i * dir / n + this.side * Math.abs(dir - 1)
+      y2 = 1 + this.side * i * Math.abs(dir - 1) / n + this.side * dir;
       this.record(show, [x1, y1], [x2, y2], name + String(i));
     }
   } else {
     for (let i = 0; i < m.length; i++) {
-      x1 = x + (this.side - 1) * m[i] * dir / n
-      y1 = y + (this.side - 1) * m[i] * Math.abs(dir - 1) / n;
-      x2 = x + (this.side - 1) * m[i] * dir / n + this.side * Math.abs(dir - 1)
-      y2 = y + (this.side - 1) * m[i] * Math.abs(dir - 1) / n + this.side * dir;
+      x1 = 1 + this.side * m[i] * dir / n
+      y1 = 1 + this.side * m[i] * Math.abs(dir - 1) / n;
+      x2 = 1 + this.side * m[i] * dir / n + this.side * Math.abs(dir - 1)
+      y2 = 1 + this.side * m[i] * Math.abs(dir - 1) / n + this.side * dir;
       this.record(show, [x1, y1], [x2, y2], name + String(i + 1));
     }
   }
