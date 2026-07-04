@@ -3,11 +3,13 @@ ctx: null,
 canvas: null,
 Lines: [],
 side: 500,
+start: [],
 
 setup(Name="canvas", Side=500) {
   this.canvas = document.getElementById(Name);
   this.ctx = canvas.getContext("2d");
   this.side = Side;
+  this.start = [(this.canvas.width - this.side) / 2, (this.canvas.height - this.side) / 2];
 },
 
 valley() {
@@ -39,8 +41,8 @@ previous() {
 },
 
 square() {
-  const x = (this.canvas.width - this.side) / 2;
-  const y = (this.canvas.height - this.side) / 2;
+  const x = this.start[0];
+  const y = this.start[1];
   this.ctx.moveTo(x, y);
   this.ctx.lineTo(x, y + this.side);
   this.ctx.lineTo(x + this.side, y + this.side);
@@ -51,8 +53,8 @@ square() {
 equalDivision(show, direction, n, m, name) {
   let dir;
   let x1, y1, x2, y2;
-  const x = (this.canvas.width - this.side) / 2;
-  const y = (this.canvas.height - this.side) / 2;
+  const x = this.start[0];
+  const y = this.start[1];
   if (direction == "row") {
     dir = 1;
   } else if (direction == "line") {
