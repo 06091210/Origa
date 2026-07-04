@@ -2,13 +2,13 @@ window.origa = {
 ctx: null,
 Lines: [],
 side: 500,
-start: [],
+startC: [],
 
 setup(Name="canvas", Side=500) {
   const canvas = document.getElementById(Name);
   this.ctx = canvas.getContext("2d");
   this.side = Side;
-  this.start = [(canvas.width - this.side) / 2, (canvas.height - this.side) / 2];
+  this.startC = [(canvas.width - this.side) / 2, (canvas.height - this.side) / 2];
 },
 
 valley() {
@@ -40,7 +40,7 @@ previous() {
 },
 
 square() {
-  const [x, y] = this.start;
+  const [x, y] = this.startC;
   this.ctx.moveTo(x, y);
   this.ctx.lineTo(x, y + this.side);
   this.ctx.lineTo(x + this.side, y + this.side);
@@ -51,7 +51,7 @@ square() {
 equalDivision(show, direction, n, m, name) {
   let dir;
   let x1, y1, x2, y2;
-  //const [x, y] = this.start;
+  const [x, y] = this.startC;
   if (direction == "row") {
     dir = 1;
   } else if (direction == "line") {
@@ -59,18 +59,18 @@ equalDivision(show, direction, n, m, name) {
   }
   if (m.length == 0) {
     for (let i = 1; i < n; i++) {
-      x1 = 1 + this.side * i * dir / n
-      y1 = 1 + this.side * i * Math.abs(dir - 1) / n;
-      x2 = 1 + this.side * i * dir / n + this.side * Math.abs(dir - 1)
-      y2 = 1 + this.side * i * Math.abs(dir - 1) / n + this.side * dir;
+      x1 = x + this.side * i * dir / n
+      y1 = y + this.side * i * Math.abs(dir - 1) / n;
+      x2 = x + this.side * i * dir / n + this.side * Math.abs(dir - 1)
+      y2 = y + this.side * i * Math.abs(dir - 1) / n + this.side * dir;
       this.record(show, [x1, y1], [x2, y2], name + String(i));
     }
   } else {
     for (let i = 0; i < m.length; i++) {
-      x1 = 1 + this.side * m[i] * dir / n
-      y1 = 1 + this.side * m[i] * Math.abs(dir - 1) / n;
-      x2 = 1 + this.side * m[i] * dir / n + this.side * Math.abs(dir - 1)
-      y2 = 1 + this.side * m[i] * Math.abs(dir - 1) / n + this.side * dir;
+      x1 = x + this.side * m[i] * dir / n
+      y1 = y + this.side * m[i] * Math.abs(dir - 1) / n;
+      x2 = x + this.side * m[i] * dir / n + this.side * Math.abs(dir - 1)
+      y2 = y + this.side * m[i] * Math.abs(dir - 1) / n + this.side * dir;
       this.record(show, [x1, y1], [x2, y2], name + String(i + 1));
     }
   }
