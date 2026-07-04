@@ -1,16 +1,14 @@
 window.origa = {
 ctx: null,
-canvas: null,
 Lines: [],
 side: 500,
 start: [],
 
 setup(Name="canvas", Side=500) {
-  this.canvas = document.getElementById(Name);
+  const canvas = document.getElementById(Name);
   this.ctx = canvas.getContext("2d");
   this.side = Side;
-  this.start.push((this.canvas.width - this.side) / 2);
-  this.start.push((this.canvas.height - this.side) / 2);
+  this.start = [(canvas.width - this.side) / 2, (canvas.height - this.side) / 2];
 },
 
 valley() {
